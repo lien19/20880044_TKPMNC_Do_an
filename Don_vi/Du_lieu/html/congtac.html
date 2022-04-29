@@ -1,0 +1,77 @@
+<div style="background-color: lightgray; padding-top: 20px; display:flex;">
+    <div style="width: 5%;"></div>
+    <div style="width: 30%; background-color: white; ">
+        <div style="margin: auto; width: 90%; padding: 10px 0;  ">
+            <form action="/congtac" method="post" id="form_timkiem" style="border-bottom: 1px solid; padding-bottom: 10px;">
+                <div class="">
+                    <label style="font-size: small; display:block;margin-left: 5px;">
+                        <span style="background-color: white; padding: 2px 2px; border-radius: 5%;"> Tìm kiếm </span>
+                    </label>
+                    <input name="txtTimKiem" id="txtTimKiem" style="margin-top:-1rem; display: block; width: 100%; height: 30px; border-radius: 5%; outline: none;"></input>
+                </div>
+            </form>
+            <!-- <form action="/business_trip" method="post" style="border-bottom: 1px solid; padding-bottom: 10px;">
+                <div style="overflow: hidden;">
+                    <div style="margin-right: 10px; float: left;">
+                        <label for="" style="font-size: small; display:block;margin-left: 5px;">
+                            <span style=" background-color: white; padding: 2px 2px;"> Năm </span> </label>
+                        <select name="HoTen" id="" style="margin-top:-1rem; display: block; width: 120px; height: 30px; border-radius: 5%;">
+                            <option value=""></option></select>
+                    </div>
+                </div>
+                <input type="submit" value="Tra cứu">
+            </form>  -->
+            <div id="timkiem_PCT" style="height: 530px;overflow: scroll;"></div>
+        </div>
+    </div>
+    <div style=" width: 60%; background-color: seagreen; color: whitesmoke; " >
+        <div style="width: 100%; height: fit-content; padding: 30px 10px;">
+            <h2 style="text-align: center;">PHIẾU CÔNG TÁC</h2><br>
+            <form action="/congtac" method="post" id="form_PCT" style="height: 390px;">
+                <div id="form_congtac">
+                    <div style="overflow:hidden; border: 1px solid; padding: 5px;">
+                        <label style="float:left; width: 20%;"> Mã số <input type="text" id="maso" name="maso" style="background-color: lightgray; width:100%; border:none; border-left: 3px solid green; height: 30px;" readonly></label>
+                        <label style="float:left; width: 20%;"> Đơn vị <select id="donvi" name="donvi" style="background-color: lightgray; width: 100%;border:none; border-left: 3px solid green; height: 30px; pointer-events: none;" readonly>
+                            </select></label>
+                        <label style="float:left; width: 20%;"> Địa điểm <input type="diadiem" id="diadiem" name="diadiem" style="background-color: lightgray; width:100%; border:none; border-left: 3px solid green; height: 30px;" readonly></label>
+                        
+                        <label style="float:left; width: 20%;"> Ngày bắt đầu <input type="date" id="ngaybatdau" name="ngaybatdau" style="background-color: lightgray; width: 100%; border:none; border-left: 3px solid green; height: 30px;" readonly></label>    
+                        <label style="float:left; width: 20%;"> Số ngày <input type="text" id="songay" name="songay" style="background-color: lightgray; width:100%; border:none; border-left: 3px solid green; height: 30px;" readonly></label>
+                        <label style="float:left; width: 40%;"> Ghi chú <input type="text" id="ghichu" name="ghichu" style="background-color: lightgray; width:100%; border:none; border-left: 3px solid green; height: 30px;" readonly></label>
+                    </div><br>                
+                    <div style="overflow:hidden; padding: 5px; height: 260px;">
+                        <p>Danh sách nhân viên</p>
+                        <div style="overflow-y: scroll; height: 200px; border: 1px solid; ">
+                            <div style="text-align:center; display: flex;">
+                                <div style="border: 1px solid white; width: 33%; ">Mã số </div>
+                                <div style="border: 1px solid white; width: 33%;">Họ tên</div>
+                                <div style="border: 1px solid white; width: 33%;">CMND</div>
+                            </div >
+                            <div id="dsNhanVien_PCT">
+                                <div style="text-align:center; display:flex;">
+                                    <div style="width:33%;"><select class="nhanvien_maso" name="nhanvien_maso" readonly style="width:95%; margin:5px; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral; pointer-events: none;"></select></div>
+                                    <div style="width:33%;"><input type="text" class="nhanvien_hoten" name="nhanvien_hoten" readonly style="width:95%; margin:5px; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral; pointer-events: none;"></input></div>
+                                    <div style="width:33%;"><input type="text" class="nhanvien_cmnd" name="nhanvien_cmnd" readonly style="width:95%; margin:5px; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral; pointer-events: none;"></input></div>
+                                </div>
+                            </div>
+                            <span style="color: aqua; padding: 20px;">+ Thêm nhân viên</span>
+                        </div>                    
+                    </div><br> 
+                </div>
+                
+                <input type="text" name="hidden" id="hidden" hidden readonly>
+                <input id="btnSua" type="button" value="Sửa" onclick="btnSua_PCT_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: red; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnTaoMoi" type="button" value="Tạo mới" onclick="btnTaoMoi_PCT_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: red; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnHuy" type="button" value="Hủy" hidden onclick="btnHuy_PCT_Click(this)"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: red; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnLuu" type="submit" value="Lưu" hidden
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: red; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+            </form>
+        </div>
+    </div>
+    <div style="width: 5%;"></div>
+</div>
+
+

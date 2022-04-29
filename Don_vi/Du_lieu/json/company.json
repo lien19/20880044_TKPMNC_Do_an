@@ -1,0 +1,329 @@
+{
+    "Ten": "Công ty X",
+    "Chi_nhanh": [
+        {
+            "Ten": "Chi nhánh A",
+            "Ma_so": "CN_1",
+            "Quan_ly_Chi_nhanh": {
+                "Ho_ten": "Nguyễn nam hảo Tâm",
+                "Ma_so": "NV_10",
+                "CMND": "060891872",
+                "Gioi_tinh": "Khác",
+                "Dien_thoai": "0992950118",
+                "Dia_chi": "Trầm hồng Minh Quận 12-TP. HCM",
+                "Mail": "nnhtâm@alphtkvn",
+                "Ten_Dang_nhap": "NV_10",
+                "Mat_khau": "NV_10",
+                "Muc_luong": 8750000,
+                "Ngay_sinh": "1973-01-20T17:00:00Z",
+                "Don_vi": {
+                    "Ten": "Dịch thuật",
+                    "Ma_so": "DV_1",
+                    "Chi_nhanh": {
+                        "Ten": "Chi nhánh A",
+                        "Ma_so": "CN_1"
+                    }
+                },
+                "Danh_sach_Ngoai_ngu": [
+                    {
+                        "Ten": "Anh",
+                        "Ma_so": "ANH"
+                    },
+                    {
+                        "Ten": "Pháp",
+                        "Ma_so": "PHAP"
+                    },
+                    {
+                        "Ten": "Đức",
+                        "Ma_so": "DUC"
+                    }
+                ]
+            },
+            "Don_vi": [
+                {
+                    "Ten": "Dịch thuật",
+                    "Ma_so": "DV_1",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Trương tiến Quân",
+                        "Ma_so": "NV_19",
+                        "CMND": "063459805",
+                        "Gioi_tinh": "Nam",
+                        "Dien_thoai": "0966928331",
+                        "Dia_chi": "Trương triệu P Quận 1-TP. HCM",
+                        "Mail": "ttquân@gmailcom",
+                        "Ten_Dang_nhap": "NV_19",
+                        "Mat_khau": "NV_19",
+                        "Muc_luong": 4550000,
+                        "Ngay_sinh": "1971-02-28T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Dịch thuật",
+                            "Ma_so": "DV_1",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh A",
+                                "Ma_so": "CN_1"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Anh",
+                                "Ma_so": "ANH"
+                            },
+                            {
+                                "Ten": "Đức",
+                                "Ma_so": "DUC"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Ten": "Đa năng A",
+                    "Ma_so": "DV_2",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Nhữ duy Phán",
+                        "Ma_so": "NV_30",
+                        "CMND": "007162916",
+                        "Gioi_tinh": "Nữ",
+                        "Dien_thoai": "0914957874",
+                        "Dia_chi": "Võ thanh T Quận 1-TP. HCM",
+                        "Mail": "ndphán@euhhcmcom",
+                        "Ten_Dang_nhap": "NV_30",
+                        "Mat_khau": "NV_30",
+                        "Muc_luong": 4200000,
+                        "Ngay_sinh": "1994-03-02T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Đa năng A",
+                            "Ma_so": "DV_2",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh A",
+                                "Ma_so": "CN_1"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Anh",
+                                "Ma_so": "ANH"
+                            },
+                            {
+                                "Ten": "Nga",
+                                "Ma_so": "NGA"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Ten": "Chi nhánh B",
+            "Ma_so": "CN_2",
+            "Quan_ly_Chi_nhanh": {
+                "Ho_ten": "Lý nam Khuê",
+                "Ma_so": "NV_41",
+                "CMND": "006686661",
+                "Gioi_tinh": "Nam",
+                "Dien_thoai": "0926768604",
+                "Dia_chi": "Thái kim A Quận 14-TP. HCM",
+                "Mail": "lnkhuê@hcmcom",
+                "Ten_Dang_nhap": "NV_41",
+                "Mat_khau": "NV_41",
+                "Muc_luong": 6300000,
+                "Ngay_sinh": "1980-10-25T17:00:00Z",
+                "Don_vi": {
+                    "Ten": "Tư vấn du học 1",
+                    "Ma_so": "DV_3",
+                    "Chi_nhanh": {
+                        "Ten": "Chi nhánh B",
+                        "Ma_so": "CN_2"
+                    }
+                },
+                "Danh_sach_Ngoai_ngu": [
+                    {
+                        "Ten": "Pháp",
+                        "Ma_so": "PHAP"
+                    },
+                    {
+                        "Ten": "Đức",
+                        "Ma_so": "DUC"
+                    }
+                ]
+            },
+            "Don_vi": [
+                {
+                    "Ten": "Tư vấn du học 1",
+                    "Ma_so": "DV_3",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Lâm kim Khóa",
+                        "Ma_so": "NV_50",
+                        "CMND": "047065099",
+                        "Gioi_tinh": "Nam",
+                        "Dien_thoai": "0991297742",
+                        "Dia_chi": "Hoàng phước Y Quận 14-TP. HCM",
+                        "Mail": "lkkhóa@mrnvn",
+                        "Ten_Dang_nhap": "NV_50",
+                        "Mat_khau": "NV_50",
+                        "Muc_luong": 10850000,
+                        "Ngay_sinh": "1986-07-27T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Tư vấn du học 1",
+                            "Ma_so": "DV_3",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh B",
+                                "Ma_so": "CN_2"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Anh",
+                                "Ma_so": "ANH"
+                            },
+                            {
+                                "Ten": "Đức",
+                                "Ma_so": "DUC"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Ten": "Tư vấn du học 2",
+                    "Ma_so": "DV_4",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Trầm thanh hảo Tâm",
+                        "Ma_so": "NV_61",
+                        "CMND": "017660121",
+                        "Gioi_tinh": "Nữ",
+                        "Dien_thoai": "0981374052",
+                        "Dia_chi": "Đặng tiến R Quận 6-TP. HCM",
+                        "Mail": "tthtâm@spthcmcom",
+                        "Ten_Dang_nhap": "NV_61",
+                        "Mat_khau": "NV_61",
+                        "Muc_luong": 5950000,
+                        "Ngay_sinh": "1991-11-30T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Tư vấn du học 2",
+                            "Ma_so": "DV_4",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh B",
+                                "Ma_so": "CN_2"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Anh",
+                                "Ma_so": "ANH"
+                            },
+                            {
+                                "Ten": "Pháp",
+                                "Ma_so": "PHAP"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Ten": "Visa",
+                    "Ma_so": "DV_5",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Lý tiến Tế",
+                        "Ma_so": "NV_80",
+                        "CMND": "060595982",
+                        "Gioi_tinh": "Nam",
+                        "Dien_thoai": "0921910269",
+                        "Dia_chi": "Võ như K Quận 12-TP. HCM",
+                        "Mail": "lttế@cscyahoocom",
+                        "Ten_Dang_nhap": "NV_80",
+                        "Mat_khau": "NV_80",
+                        "Muc_luong": 8050000,
+                        "Ngay_sinh": "1980-03-13T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Visa",
+                            "Ma_so": "DV_5",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh B",
+                                "Ma_so": "CN_2"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Pháp",
+                                "Ma_so": "PHAP"
+                            },
+                            {
+                                "Ten": "Nga",
+                                "Ma_so": "NGA"
+                            },
+                            {
+                                "Ten": "Đức",
+                                "Ma_so": "DUC"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Ten": "Đa năng B",
+                    "Ma_so": "DV_6",
+                    "Quan_ly_Don_vi": {
+                        "Ho_ten": "Lê đắc Hà",
+                        "Ma_so": "NV_100",
+                        "CMND": "087702450",
+                        "Gioi_tinh": "Nam",
+                        "Dien_thoai": "0919514721",
+                        "Dia_chi": "Lâm bảo G Quận 14-TP. HCM",
+                        "Mail": "lđhà@sptvn",
+                        "Ten_Dang_nhap": "NV_100",
+                        "Mat_khau": "NV_100",
+                        "Muc_luong": 4550000,
+                        "Ngay_sinh": "1983-09-12T17:00:00Z",
+                        "Don_vi": {
+                            "Ten": "Đa năng B",
+                            "Ma_so": "DV_6",
+                            "Chi_nhanh": {
+                                "Ten": "Chi nhánh B",
+                                "Ma_so": "CN_2"
+                            }
+                        },
+                        "Danh_sach_Ngoai_ngu": [
+                            {
+                                "Ten": "Anh",
+                                "Ma_so": "ANH"
+                            },
+                            {
+                                "Ten": "Pháp",
+                                "Ma_so": "PHAP"
+                            },
+                            {
+                                "Ten": "Đức",
+                                "Ma_so": "DUC"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "Danh_sach_Ngoai_ngu": [
+        {
+            "Ten": "Anh",
+            "Ma_so": "ANH"
+        },
+        {
+            "Ten": "Pháp",
+            "Ma_so": "PHAP"
+        },
+        {
+            "Ten": "Nga",
+            "Ma_so": "NGA"
+        },
+        {
+            "Ten": "Đức",
+            "Ma_so": "DUC"
+        },
+        {
+            "Ten": "Brasil",
+            "Ma_so": "Brasil"
+        },
+        {
+            "Ten": "Ý",
+            "Ma_so": "Y"
+        }
+    ]
+    
+}
+

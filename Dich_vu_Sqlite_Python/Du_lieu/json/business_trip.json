@@ -1,0 +1,142 @@
+[
+  {
+    "2021": []
+  },
+  {
+    "2022": [
+      {
+        "Ma_so": "PCT_1",
+        "Don_vi": {
+          "Ten": "Dịch thuật",
+          "Ma_so": "DV_1",
+          "Chi_nhanh": {
+            "Ten": "Chi nhánh A",
+            "Ma_so": "CN_1"
+          }
+        },
+        "Dia_diem": "HCM",
+        "Ngay_bat_dau": "2022-03-12",
+        "So_ngay": 4,
+        "Ghi_Chu": "Kiểm kê",
+        "Danh_sach_Nhan_vien": [
+          {
+            "Ho_ten": "Thái thế hiền Thục",
+            "Ma_so": "NV_2",
+            "CMND": "005246710",
+            "Gioi_tinh": "Nam",
+            "Dien_thoai": "0919631495",
+            "Dia_chi": "Đinh thế D Quận 6-TP. HCM",
+            "Mail": "tththục@euhyahoocom",
+            "Ten_Dang_nhap": "NV_2",
+            "Mat_khau": "NV_2",
+            "Muc_luong": 10850000,
+            "Ngay_sinh": "1970-12-24T17:00:00Z",
+            "Don_vi": {
+              "Ma_so": "DV_2",
+              "Ten": "Đa năng A",
+              "Chi_nhanh": {
+                "Ma_so": "CN_1",
+                "Ten": "Chi nhánh A"
+              }
+            },
+            "Danh_sach_Ngoai_ngu": [
+              {
+                "Ten": "Pháp",
+                "Ma_so": "PHAP"
+              },
+              {
+                "Ten": "Đức",
+                "Ma_so": "DUC"
+              },
+              {
+                "Ten": "Ý",
+                "Ma_so": "Y"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Ma_so": "PCT_2",
+        "Don_vi": {
+          "Ten": "Dịch thuật",
+          "Ma_so": "DV_1",
+          "Chi_nhanh": {
+            "Ten": "Chi nhánh A",
+            "Ma_so": "CN_1"
+          }
+        },
+        "Dia_diem": "HCM",
+        "Ngay_bat_dau": "2022-03-12",
+        "So_ngay": 4,
+        "Ghi_Chu": "Gặp khách hàng",
+        "Danh_sach_Nhan_vien": [
+          {
+            "Ho_ten": "Thái thế hiền Thục",
+            "Ma_so": "NV_2",
+            "CMND": "005246710",
+            "Gioi_tinh": "Nam",
+            "Dien_thoai": "0919631495",
+            "Dia_chi": "Đinh thế D Quận 6-TP. HCM",
+            "Mail": "tththục@euhyahoocom",
+            "Ten_Dang_nhap": "NV_2",
+            "Mat_khau": "NV_2",
+            "Muc_luong": 10850000,
+            "Ngay_sinh": "1970-12-24T17:00:00Z",
+            "Don_vi": {
+              "Ma_so": "DV_2",
+              "Ten": "Đa năng A",
+              "Chi_nhanh": {
+                "Ma_so": "CN_1",
+                "Ten": "Chi nhánh A"
+              }
+            },
+            "Danh_sach_Ngoai_ngu": [
+              {
+                "Ten": "Pháp",
+                "Ma_so": "PHAP"
+              },
+              {
+                "Ten": "Đức",
+                "Ma_so": "DUC"
+              },
+              {
+                "Ten": "Ý",
+                "Ma_so": "Y"
+              }
+            ]
+          },
+          {
+            "Ho_ten": "Hoa ngọc thục Phán",
+            "Ma_so": "NV_3",
+            "CMND": "006290174",
+            "Gioi_tinh": "Nam",
+            "Dien_thoai": "0972556386",
+            "Dia_chi": "Phùng thanh S Quận 13-Vĩnh Long",
+            "Mail": "hntphán@mdagmailvn",
+            "Ten_Dang_nhap": "NV_3",
+            "Mat_khau": "NV_3",
+            "Muc_luong": 9450000,
+            "Ngay_sinh": "1992-07-06T17:00:00Z",
+            "Don_vi": {
+              "Ten": "Dịch thuật",
+              "Ma_so": "DV_1",
+              "Chi_nhanh": {
+                "Ten": "Chi nhánh A",
+                "Ma_so": "CN_1"
+              }
+            },
+            "Danh_sach_Ngoai_ngu": [
+              {
+                "Ten": "Anh",
+                "Ma_so": "ANH"
+              }
+            ],
+            "Hinh": "/NV_3.png",
+            "Hinh_chinh_sua": ""
+          }
+        ]
+      }
+    ]
+  }
+]

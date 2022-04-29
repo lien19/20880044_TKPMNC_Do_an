@@ -1,0 +1,74 @@
+<div style="background-color: lightgray; padding-top: 20px; display:flex; ">
+    <div style="width: 5%;"></div>
+    <div style="width: 30%; background-color: white; ">
+        <div style="margin: auto; width: 90%; padding: 10px 0;  ">
+            <form action="/nhanvien" method="post" id="form_timkiem" style="border-bottom: 1px solid; padding-bottom: 10px;">
+                <div class="">
+                    <label for="" style="font-size: small; display:block;margin-left: 5px;">
+                        <span style=" background-color: white; padding: 2px 2px; border-radius: 5%;"> Tìm kiếm </span>
+                    </label>
+                    <input name="txtTimKiem" id="txtTimKiem" style="margin-top:-1rem; display: block; width: 100%; height: 30px; border-radius: 5%; outline: none;"></input>
+                </div>
+                <!-- <input type="submit" value="Tra cứu"> -->
+            </form>
+            <div id="timkiem_NV" style="height: 530px;overflow: scroll;"></div>
+        </div>
+    </div>
+    <div style=" width: 60%; background-color: lightcoral; color: whitesmoke; ">
+        <div style="width: 100%; height: fit-content; padding: 30px 10px;">
+            <h2 style="text-align: center;">HỒ SƠ NHÂN VIÊN</h2><br>
+            <form action="/nhanvien" method="post" id="form_NV" style="border: 1px solid; height: 390px;">
+                <div id="form_hosonhanvien" style="overflow:hidden;">
+                    <div style="display:flex; ">                        
+                        <div style="clear: both; width: 70%; padding: 5px; ">
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Mã số <input type="text" id="maso" name="maso" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Họ tên <input id="hoten" name="hoten" readonly
+                                style="width: 100%;border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"> </label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Giới tính <input type="text" id="gioitinh" name="gioitinh" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            
+                            <label style="float:left; width: 45%; padding-left: 8px;"> CMND <input type="text" id="cmnd" name="cmnd" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Ngày sinh <input type="text" id="ngaysinh" name="ngaysinh" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Mức lương <input type="text" id="mucluong" name="mucluong" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Điện thoại <input type="text" id="dienthoai" name="dienthoai" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Mail <input type="text" id="mail" name="mail" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Địa chỉ <input type="text" id="diachi" name="diachi" readonly
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                            
+                            <label style="float:left; width: 45%; padding-left: 8px;"> Đơn vị <select onload="this.style.width = this.value.length + 'px' " type="text" id="donvi" name="donvi" 
+                                style="width:100%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral; pointer-events: none;"></select></label>
+                        </div> <br>
+                        <div>
+                            <div style="display: block; margin: 30px auto; width: 50%;"><img width="150px" height="150px"></div>
+                            <label style="width: 100%; padding-left: 8px;"> Nhập URL để cập nhật hình ành <input type="text" id="hinh" name="hinh" readonly
+                                style="width:90%; border:none; height: 30px; background-color: lightgray; outline-color: lightcoral;"></label>
+                        </div>                        
+                    </div>
+                    <div><label style="float:left; padding-left: 12px;"> Khả năng ngoại ngữ 
+                        <span id="khanangngoaingu" ></span> 
+                        <span style="color: aqua; padding: 20px;">+ Thêm ngoai ngữ</span>
+                    </label></div>
+                </div><br>
+
+                <input type="text" name="hidden" id="hidden" hidden readonly>
+                <input id="btnSua" type="button" value="Sửa" onclick="btnSua_NV_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <!-- <input id="btnTaoMoi" type="button" value="Tạo mới" onclick="btnTaoMoi_NV_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;"> -->
+                <input id="btnHuy" type="button" value="Hủy" hidden onclick="btnHuy_NV_Click(this)"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnLuu" type="submit" value="Lưu" hidden
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <br>
+            </form>
+        </div>
+    </div>
+    <div style="width: 5%;"></div>
+</div>

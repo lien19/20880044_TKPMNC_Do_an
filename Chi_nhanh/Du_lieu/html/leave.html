@@ -1,0 +1,92 @@
+<div style="background-color: lightgray; padding-top: 20px; display:flex;">
+    <div style="width: 5%;"></div>
+    <div style="width: 30%; background-color: white; ">
+        <div style="margin: auto; width: 90%; padding: 10px 0;  ">
+            <form action="/leave" method="post" id="form_timkiem" style="border-bottom: 1px solid; padding-bottom: 10px;">
+                <div class="">
+                    <label for="" style="font-size: small; display:block;margin-left: 5px;">
+                        <span style=" background-color: white; padding: 2px 2px; border-radius: 5%;"> Tìm kiếm </span>
+                    </label>
+                    <input name="txtTimKiem" id="txtTimKiem" style="margin-top:-1rem; display: block; width: 40%; height: 30px; border-radius: 5%; outline: none;"></input>
+                </div>
+                <!-- <input type="submit" value="Tra cứu"> -->
+            </form>
+            <div id="search_leave"></div>
+        </div>
+    </div>
+    <div style=" width: 60%; background-color: darkgoldenrod; color: whitesmoke; ">
+        <div style="width: 100%; height: fit-content; padding: 30px 10px;">
+            <h2 style="text-align: center;">ĐƠN XIN NGHỈ</h2><br>
+            <form action="/Leave" method="post" id="form_DXN" onsubmit="">
+                <div>
+                    <div id="form_donxinnghi"  style="overflow:hidden">
+                        <div></div>
+                        <div id="nhanvien-form_donxinnghi" style="clear: both; border: 1px solid; height: 200px; padding: 5px;">
+                            <label style="float:left; width: 33.3%;"> Mã số <input type="text" id="maso" name="maso" readonly 
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+
+                            <label style="float:left; width: 33.3%;"> Họ tên <select id="hoten" name="hoten" 
+                                    style="width: 100%;border:none; border-left: 3px solid green; height: 30px; background-color: lightgray; pointer-events:none; /*cursor: no-drop;*/">    </select></label>
+                            <label style="float:left; width: 33.3%;"> Đơn vị <input type="text" id="donvi" name="donvi" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                            <label style="float:left; width: 33.3%;"> CMND <input type="text" id="cmnd" name="cmnd" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+
+                            <label style="float:left; width: 33.3%;"> Ngày bắt đầu <input type="date" id="ngaybatdau" name="ngaybatdau" readonly
+                                    style="width: 100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                            <label style="float:left; width: 33.3%;"> Số ngày <input type="text" id="songay" name="songay" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                            <label style="float:left; width: 33.3%;"> Lý do <input type="text" id="lydo" name="lydo" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                        </div> <br>
+
+                        <div id="donvi-form_donxinnghi" style="clear: both; border: 1px solid; height: 100px; padding: 5px;">
+                            <div> Ý kiến của Quản lý Đơn vị </div>
+                            <label style="float:left; width: 33.3%;"> Mã số Quản lý Đơn vị <select id="masoquanlydonvi" name="masoquanlydonvi" 
+                                    style="width: 100%;border:none; border-left: 3px solid green; height: 30px; background-color: lightgray; pointer-events: none;">     </select></label>
+                            <label style="float:left; width: 33.3%;"> Ngày <input type="date" id="ngay_donvi" name="ngay_donvi" readonly
+                                    style="width: 100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                            <label style="float:left; width: 33.3%;"> Nội dung <input type="text" id="noidung_donvi" name="noidung_donvi" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                        </div><br>
+
+                        <div id="chinhanh-form_donxinnghi" style="clear: both; border: 1px solid; height: 100px; padding: 5px;">
+                            <div> Ý kiến của Quản lý Chi nhánh </div>
+                            <label style="float:left; width: 33.3%;"> Mã số Quản lý Chi nhánh <select id="masoquanlychinhanh" name="masoquanlychinhanh" 
+                                    style="width: 100%;border:none; border-left: 3px solid green; height: 30px; background-color: lightgray; pointer-events: none;">   </select></label>
+                            <label style="float:left; width: 33.3%;"> Ngày <input type="date" id="ngay_chinhanh" name="ngay_chinhanh" readonly
+                                    style="width: 100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                            <label style="float:left; width: 33.3%;"> Nội dung <input type="text" id="noidung_chinhanh" name="noidung_chinhanh" readonly
+                                    style="width:100%; border:none; border-left: 3px solid green; height: 30px; background-color: lightgray;"></label>
+                        </div>
+                    </div>
+                </div><br>
+                <input type="text" name="hidden" id="hidden" hidden readonly>
+                <input id="btnSua" type="button" value="Sửa" onclick="btnSua_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnTaoMoi" type="button" value="Tạo mới" onclick="btnTaoMoi_Click()"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnHuy" type="button" value="Hủy" hidden onclick="btnHuy_Click(this)"
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <input id="btnLuu" type="submit" value="Lưu" hidden 
+                    style="position:sticky; top: 100px; margin: 5px;float:right; width: 20%; background-color: seagreen; border: none; padding: 5px; border-radius: 4px;color: whitesmoke;">
+                <br>
+            </form>
+        </div>
+    </div>
+    <div style="width: 5%;"></div>
+</div>
+
+
+<script>
+
+</script>
+
+
+<!-- <div style="border-bottom: 1px solid;">
+    <div>ms
+        <span style="background-color: red; color: white;" ></span>
+        <span style="background-color: lightgray; " ></span>
+    </div>
+    
+</div> -->

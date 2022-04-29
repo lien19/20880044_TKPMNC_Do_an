@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body style="font-family:Arial;width:100%;box-sizing:border-box; margin:0px;;padding:0px;overflow-x:hidden" class="container-fluid">
+    <div class="CUA_SO_PET" id="header" style="background-color:aliceblue;margin:10px">
+        <div style="margin-left:0px">
+            <ul>
+                <!-- <img src="/PET.png" style="width:40px;height:30px;" /> -->
+                <li class="btn TOM_TAT" style="color:blue; display: inline-block;">Mô hình - Công nghệ - Kỹ thuật</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin:5px;" id="content"> </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/XLSuKien.js"></script>
+    
+
+<script>     
+    //Method GET
+    window.addEventListener('load', (e) => {
+        e.preventDefault();                                              //for event click, it will load res.sendFile index only  if not use preventDefault()
+        e.stopPropagation();                                               
+        var url   = window.location.href
+        var paths = ["api", "employee", "business_trip", "leave", "baocao", "nhanvien", "congtac"]
+
+        if( ! url.split('/')[3] )  { 
+            ajax_readFile('/api.html', '#content')                                          //20880044.js
+                .done(() => { //Method POST
+                    $('#login_employee').on('submit', (ev) => {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        const formData = Object.fromEntries(new FormData(ev.target).entries());  //var a = {emailEmployee: $('#emailEmployee').val(), passEmployee: $('#passEmployee').val()}
+                        ajax_post('/api', {objectData:formData})                              //20880044.js
+                            .done((data) => {
+                                if(data.status == "ok")                                     
+                                    ajax_post_client('/', {objectData:data})                         //20880044.js
+                                        .done ((data) => { window.location = '/nhanvien' })
+                                else alert("Vui lòng kiểm tra lại email và password")
+                            })
+                    })
+					$('#login_branch').on('submit', (ev) => {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        const formData = Object.fromEntries(new FormData(ev.target).entries());  //var a = {emailEmployee: $('#emailEmployee').val(), passEmployee: $('#passEmployee').val()}
+                        ajax_post('/api', {objectData:formData})         //20880044.js
+                            .done((data) => {
+                                if(data.status == "ok")                                     
+                                    ajax_post_client('/', {objectData:data})                         //20880044.js
+                                        .done ((data) => { window.location = '/nhanvien' })
+                                else alert("Vui lòng kiểm tra lại email và password")
+                            })
+                    })
+                    $('#login_unit').on('submit', (ev) => {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        const formData = Object.fromEntries(new FormData(ev.target).entries());  //var a = {emailEmployee: $('#emailEmployee').val(), passEmployee: $('#passEmployee').val()}
+                        ajax_post('/api', {objectData:formData})         //20880044.js
+                            .done((data) => {
+                                if(data.status == "ok")                                     
+                                    ajax_post_client('/', {objectData:data})                         //20880044.js
+                                        .done ((data) => { window.location = '/nhanvien' })
+                                else alert("Vui lòng kiểm tra lại email và password")
+                            })
+                    })
+                }) 
+        }    
+        else {
+            paths.forEach(path => {
+                if( url.split('/')[3].indexOf(path) != -1 )  { 
+                    ajax_readFile(`/${path}.html`, '#content')            /*ajax is async*/
+                    ajax_readFile(`/header_employee.html`, '#header')
+                    ajax_read('/api/Employee').done((data)=>{ //return object
+                        var htmlString = html_search_employee(data)
+                        $('#search_employee').html(htmlString)
+                    })
+                    nhanvien_Load().done(()=>{  
+                        $('#form_NV').on('submit', (ev) => { btnLuu_NV_Click(ev)   })   
+                        $('#form_timkiem').on('submit', (ev) => { txtTimKiem_NV_keyEnter(ev)   }) 
+                    })
+                    leave_Load().done(()=>{  
+                        $('#form_DXN').on('submit', (ev) => { btnLuu_Click(ev)   })   
+                        $('#form_timkiem').on('submit', (ev) => { txtTimKiem_DXN_keyEnter(ev)   })      
+                    })
+                    congtac_Load().done(()=>{  
+                        $('#form_PCT').on('submit', (ev) => { btnLuu_PCT_Click(ev)   })   
+                        $('#form_timkiem').on('submit', (ev) => { txtTimKiem_PCT_keyEnter(ev)   })      
+                    })
+                                 
+                }
+            })
+        }
+    })       
+        
+    
+</script>
+
+<script>
+    //document ready
+    $(document).ready(function(){
+        $('#donvi').attr("size", $(this).val().length);
+        $("#lop").on('change', function() {
+            var lop = $(this).val();   //var lop = this.value
+            var indexLop = window.location.href.indexOf('?')
+            if(indexLop != -1) window.location.href = window.location.href.split('?')[0] + '?lop=' + lop
+            else window.location.href = window.location.href + '?lop=' + lop   
+        })
+        //Lấy giá trị của lớp trên url, truyền value vào select id=lop, 
+        var malop = window.location.href.split('=')[1]; 
+        $('#lop').val(malop)     
+        
+        $('#search_employee').html('<h1>a</h1>')
+
+
+        //----------------
+        
+        
+    })      
+</script>
+
+
+<script>
+    // document.getElementById('diemdanh').addEventListener('submit', (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(e.target);
+    //     let object     = {};
+    //     formData.forEach((value, key) => {
+    //         if (!object[key])                { object[key] = value; return; }  //Nếu chưa có key này thì thêm vô, return không đi tiếp xuống dưới
+    //         if (!Array.isArray(object[key])) { object[key] = [object[key]]; }  //Nếu có key này rồi thì kiểm tra là array chưa
+    //         object[key].push(value);                                           //Thêm giá trị mới vào mảng
+    //     });
+    //     object['DanhSach'] = []
+    //     if(Array.isArray(object['mahocsinh'])) {
+    //         for (var i = 0; i < object['mahocsinh'].length; i++) {
+    //             object['DanhSach'].push({
+    //                 'mahocsinh' : object['mahocsinh'] [i], 
+    //                 'tenhocsinh': object['tenhocsinh'][i],
+    //                 'vang'      : object['vang']      [i],  
+    //                 'lydovang'  : object['lydovang']  [i],  
+    //             })
+    //         }
+    //     }
+    //     delete object['mahocsinh']; delete object['tenhocsinh']; delete object['vang']; delete object['lydovang'];        
+    //     let json = JSON.stringify(object);   
+        
+    //     /*let r = Array.from(formData).reduce( (o , [k,v]) =>   ( (!o[k]) ? {...o , [k] : v} : {...o , [k] : [...o[k], v]} )       ,{} );    let obj = JSON.stringify(r);     //o:object, k:key, v:value   */
+
+    //     $.ajax({
+    //         url     : '/diemdanh',
+    //         type    : 'POST',
+    //         data    : {json},
+    //         dataType: 'JSON',
+    //         success : function(data) { /*lưu Bảng điểm danh bên server*/       alert(data)       }                
+    //     }) 
+              
+    // })
+    
+
+</script>
+
+
+</body>
+
+</html>
