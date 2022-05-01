@@ -1,5 +1,3 @@
-const { del } = require('express/lib/application')
-
 const controller = {}
 
 //----------Login====================================

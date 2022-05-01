@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 ThuMuc_Chuyen_Du_lieu_Ngay_sinh_NodeJs = Path('./Chuyen_Du_lieu_Ngay_sinh_NodeJs')
-ThuMuc = Path('./data')
+ThuMuc = Path('./Du_lieu/json')
 
 folder_Sqlite_Python = Path('./Du_lieu/sqlite_database')
 databasePath = folder_Sqlite_Python.joinpath('Python_sqlite.db')
@@ -37,7 +37,7 @@ def themDuLieu(conn, sql, data):   #close connection
         conn.commit()
         cursor.close()
     except Error as e:
-        print('Không thêm được dữ liệu', e)    # finally:    #     if conn:    #         conn.close()
+        print('Không cập nhật được dữ liệu', e)    # finally:    #     if conn:    #         conn.close()
 
 def dongKetNoi(conn):
     if conn:
@@ -105,6 +105,9 @@ def create_data():
         nv['Muc_luong']     = DuLieu_NV['Muc_luong']
         nv['Ngay_sinh']     = DuLieu_NV['Ngay_sinh']
         nv['Ma_so_don_vi']  = DuLieu_NV['Don_vi']['Ma_so']
+        if 'Dia_chi' in DuLieu_NV :
+            nv['Dia_chi']   = DuLieu_NV['Dia_chi']
+        else: nv['Dia_chi'] = ''
         NHANVIEN.append(nv)
 
 		#Tạo bảng NGOAINGU, bảng NHANVIEN_NGOAINGU
@@ -342,6 +345,8 @@ def coKetQuaTimKiem_obj (item, objectData) : #item: object, ketQua: array
 
 
 #----------sqlite to JSON-employee====================================
+
+
 def getAll_Employee (databasePath) :
     conn = taoKetNoi(databasePath)
     #------Dictionary of employee
@@ -364,6 +369,42 @@ def getAll_Employee (databasePath) :
     if data != None: return data
     else: return []
 
+#---------- Công ty ====================================
+def getUnit (databasePath) :
+    conn        = taoKetNoi(databasePath)
+    #------Dictionary of data
+    data        = layDuLieuBang(conn, f"""SELECT Ma_so, Ten, Ma_so_quan_ly FROM DONVI """, [])
+    lstEmployee = getAll_Employee(databasePath)
+
+    for u in data:
+        for e in lstEmployee :
+            if e['Ma_so'] == u['Ma_so_quan_ly'] : 
+                u['Quan_ly_Don_vi'] = e
+                u['Chi_nhanh']      = e['Don_vi']['Chi_nhanh']
+        del u['Ma_so_quan_ly']
+    return data
+
+# data = getUnit(databasePath)
+# print(data[0])
+
+def getBranch (databasePath) :
+    conn        = taoKetNoi(databasePath)
+    #------Dictionary of employee
+    data        = layDuLieuBang(conn, f"""SELECT Ma_so, Ten, Ma_so_quan_ly FROM CHINHANH """, [])
+    lstEmployee = getAll_Employee(databasePath)
+    lstUnit     = getUnit(databasePath)
+    for b in data:
+        b['Quan_ly_Chi_nhanh'] = [e for e in lstEmployee if e['Ma_so'] == b['Ma_so_quan_ly'] ][0]
+        b['Don_vi']            = [u for u in lstUnit     if b['Ma_so'] == u['Chi_nhanh']['Ma_so'] ]
+        del b['Ma_so_quan_ly']
+    return data
+
+
+def getLanguage (databasePath) :
+    conn = taoKetNoi(databasePath)
+    #------Dictionary of data
+    data = layDuLieuBang(conn, f"""SELECT Ma_so, Ten FROM NGOAINGU """, [])
+    return data
 
 #----------sqlite to JSON-BusinessTrip====================================
             
@@ -383,8 +424,8 @@ def getAll_BusinessTrip (databasePath) :
                                                             ON dvcn.Ma_so_chi_nhanh = cn.Ma_so
                                                             WHERE Ma_so_don_vi=? """, [item['Don_vi']['Ma_so'].strip()  ])[0]
             listEmployeeId              = layDuLieuBang(conn, f"""SELECT Ma_so_nhan_vien FROM NHANVIEN_PHIEUCONGTAC WHERE Ma_so_phieu_cong_tac=? """, [item['Ma_so'].strip() ])
-            item['Danh_sach_Nhan_vien'] = []  
-            if len(listEmployeeId) != 0 and len(listEmployee) != 0 :          
+            item['Danh_sach_Nhan_vien'] = []
+            if len(listEmployeeId) != 0 and len(listEmployee) != 0 :   
                 for e in listEmployee:
                     for id in listEmployeeId: 
                         if e['Ma_so'] == id['Ma_so_nhan_vien'] : item['Danh_sach_Nhan_vien'].append(e)
@@ -401,13 +442,11 @@ def getAll_BusinessTrip (databasePath) :
     if data != None: return data
     else: return []
 
-
-
 #----------sqlite to JSON-leave====================================
 def getAll_Leave (databasePath) :
-    conn = taoKetNoi(databasePath)
+    conn         = taoKetNoi(databasePath)
     #------Dictionary of leave
-    data  = layDuLieuBang(conn, f"""SELECT * FROM DONXINNGHI """, [])
+    data         = layDuLieuBang(conn, f"""SELECT * FROM DONXINNGHI """, [])
     listEmployee = getAll_Employee(databasePath)
     for item in data:
         yKienCN = layDuLieuBang(conn, f"""SELECT  yk.Ma_so_quan_ly, yk.Ngay, yk.Noi_dung
@@ -422,7 +461,7 @@ def getAll_Leave (databasePath) :
                                         WHERE yk.Ma_so_don_xin_nghi=? """, [item['Ma_so'].strip()  ])
         
         item['Y_kien_Chi_nhanh'] = {}
-        item['Y_kien_Don_vi'] = {}
+        item['Y_kien_Don_vi']    = {}
         for e in listEmployee:
             if e['Ma_so'] == item['Ma_so_nhan_vien'] : item['Nhan_vien'] = e
             if len(yKienCN) == 1 and e['Ma_so'] == yKienCN[0]['Ma_so_quan_ly'] : 
@@ -430,18 +469,97 @@ def getAll_Leave (databasePath) :
                 item['Y_kien_Chi_nhanh']['Ngay']              = yKienCN[0]['Ngay']
                 item['Y_kien_Chi_nhanh']['Noi_dung']          = yKienCN[0]['Noi_dung']
             if len(yKienDV) == 1 and e['Ma_so'] == yKienDV[0]['Ma_so_quan_ly'] : 
-                item['Y_kien_Don_vi']['Quan_ly_Don_vi'] = e
-                item['Y_kien_Don_vi']['Ngay']           = yKienDV[0]['Ngay']
-                item['Y_kien_Don_vi']['Noi_dung']       = yKienDV[0]['Noi_dung']
+                item['Y_kien_Don_vi']['Quan_ly_Don_vi']       = e
+                item['Y_kien_Don_vi']['Ngay']                 = yKienDV[0]['Ngay']
+                item['Y_kien_Don_vi']['Noi_dung']             = yKienDV[0]['Noi_dung']
         del item['Ma_so_nhan_vien']
 
     dongKetNoi(conn)
     if data != None: return data
     else: return []
 
+#----------sqlite to JSON-Khởi tạo object====================================
+def updateEmployee (databasePath, objectData) :
+    conn = taoKetNoi(databasePath)
+    #themDuLieu(conn, f"""Alter table NHANVIEN add Dia_chi TEXT """, [])
+    themDuLieu(conn, f"""UPDATE NHANVIEN SET Ho_ten=?,CMND=?,Gioi_tinh=?,Dien_thoai=?,Dia_chi=?,Mail=?,Muc_luong=?,Ngay_sinh=?
+                        WHERE Ma_so=?  """, 
+                        [ objectData['hoten'], objectData['cmnd'],objectData['gioitinh'], objectData['dienthoai'],
+                        objectData['diachi'], objectData['mail'], objectData['mucluong'], objectData['ngaysinh'], objectData['maso']  ])
+    # duyệt objectData['ngoaingu'] => item nào không có thì INSERT, itemitem nào có thì bỏ wa
+    # duyệt NHANVIEN_NGOAINGU => item nào không có thì xóa đi
+    lstLang    = getLanguage(databasePath); 
+    lstLangEmp = layDuLieuBang(conn, f"""SELECT * 
+                                        FROM NHANVIEN_NGOAINGU nvnn
+                                        JOIN NGOAINGU nn ON nn.Ma_so = nvnn.Ma_so_ngoai_ngu
+                                        WHERE Ma_so_nhan_vien = ?   """,   [objectData['maso'] ])
+    for i in lstLangEmp:
+        if i['Ten'] not in objectData['ngoaingu']: 
+            themDuLieu(conn, f"""DELETE FROM NHANVIEN_NGOAINGU 
+                                WHERE Ma_so_nhan_vien = ?
+                                AND Ma_so_ngoai_ngu   = ?   """, [objectData['maso'], i['Ma_so']  ])
+    for i in objectData['ngoaingu']:   #objectData['ngoaingu'] là 1 array of string
+        if not any (j['Ten'] == i for j in lstLangEmp)  : 
+            msnn = [ a['Ma_so'] for a in lstLang if a['Ten'] == i ][0]
+            print(msnn)         
+            themDuLieu(conn, f"""INSERT INTO NHANVIEN_NGOAINGU (Ma_so_nhan_vien, Ma_so_ngoai_ngu)
+                                VALUES (?,?)  """, [objectData['maso'], msnn])
+    #Cập nhật Đơn vị
+    msdv = layDuLieuBang(conn, f"""SELECT Ma_so     FROM DONVI     WHERE Ten = ? """,   [objectData['donvi']  ])[0]['Ma_so']
+    print(msdv)
+    themDuLieu(conn, f"""UPDATE NHANVIEN    
+                        SET Ma_so_don_vi = ?
+                        WHERE Ma_so      = ?   """, [msdv, objectData['maso']])
+    #if( objectData['hinh'] )  item['Hinh_chinh_sua']  = objectData['hinh']    
+    
+def createEmployee():
+    return ''
 
-# data = getAll_Leave('./Du_lieu/sqlite_database/Python_sqlite.db')
-# print(data)
+objectData = {'hoten':'Bành đình thụy Khuê',
+            'maso':'NV_1',
+            'cmnd':'007958643',
+            'gioitinh':'Nam',
+            'dienthoai':'0949134444',
+            'diachi':'',
+            'mail':'bđtkhuê@gmailvn',
+            'mucluong':9800000,
+            'ngaysinh':'1972-04-01T17:00:00Z',
+            'donvi':'Tư vấn du học 2',
+            'ngoaingu': ['Pháp','Ý', 'Anh']
+            } 
+#print(objectData)
+# updateEmployee(databasePath, objectData)
+
+
+def themDiaChi():             #chạy chương trình
+    data = create_data(); #print(a['CHINHANH'])
+    # create a database connection
+    conn = taoKetNoi(databasePath)  
+    # create tables
+    if conn is not None:        
+        for x in data['NHANVIEN']         : themDuLieu(conn, f"""update NHANVIEN
+                                                                set Dia_chi = ?
+                                                                where Ma_so = ?""", 
+                                                                [ x['Dia_chi'], x['Ma_so']   ] ) 
+        
+    else:
+        print("Error! cannot create the database connection.")
+    dongKetNoi(conn)
+
+#----------sqlite to JSON-Khởi tạo object====================================
+def updateLeave (databasePath, objectData) :
+    return ''
+
+def updateBusinessTrip (databasePath, objectData) :
+    return ''
+
+def createBusinessTrip (databasePath, objectData) :
+    return ''
+
+
+
+
+
 
 
 

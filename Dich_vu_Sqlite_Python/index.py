@@ -121,15 +121,10 @@ def searchEmployee() :
 @app.route('/api/NhanVien/Sua', methods=['GET', 'POST'])
 def editEmployee_API() :
     if request.method == 'POST':
-        objectData = req.body.objectData;                      #FormData không null nên không cần check null
-        dsNhanVien = getAll('./Du_lieu/json', 'employee.json')
-        dsNhanVien.forEach(item => {
-            if (item['Ma_so'] == objectData['maso']) :
-                item      = KhoiTao_NhanVien_Json(item, objectData)
-                chuoiJson = JSON.stringify(dsNhanVien, null, 4); 
-                write('./Du_lieu', 'employee_c.json', chuoiJson)
-                res.json('ok')
-        
+        objectData = request.form['objectData']                      #FormData không null nên không cần check null
+        updateEmployee(databasePath, objectData)
+        return jsonify('ok')
+                
 
 #----------API post JSON data - Đơn xin nghỉ ====================================
 @app.route('/api/Leave/Search', methods=['GET', 'POST'])
